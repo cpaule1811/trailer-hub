@@ -1,0 +1,27 @@
+{
+  "name": "trailer-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "knex": "^0.95.11",
+    "next": "11.1.0",
+    "pg": "^8.7.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-player": "^2.9.0",
+    "tachyons": "^4.12.0",
+    "tachyons-box-sizing": "^3.2.2"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0"
+  },
+  "dev": "NODE_OPTIONS='--inspect' next dev"
+}
