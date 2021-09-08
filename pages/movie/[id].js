@@ -41,7 +41,7 @@ export default function Movie({ movie }) {
 
 export async function getServerSideProps({ params }) { 
   const { id } = params
-  const res = await fetch(`http://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}&append_to_response=casts,videos`)
+  const res = await fetch(`http://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&append_to_response=casts,videos`)
   const movie = await res.json()
   return { 
     props: { 

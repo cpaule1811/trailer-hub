@@ -58,7 +58,7 @@ export async function getStaticProps() {
 }
 
 const fetchData = async (genre) => { 
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_KEY}&with_genres=${genre}&vote_count.gte=1000&sort_by=vote_average.desc`
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&with_genres=${genre}&vote_count.gte=1000&sort_by=vote_average.desc`
     const res = await fetch(url)
     return res.json()
 }

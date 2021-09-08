@@ -16,7 +16,7 @@ export default function Results({movies, search}) {
 
 export async function getServerSideProps({ query }) { 
     const { search } = query 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_KEY}&query=${search}`
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&query=${search}`
     const res = await fetch(url)
     const movies = await res.json()
     return { 
