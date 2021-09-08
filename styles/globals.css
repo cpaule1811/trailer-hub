@@ -1,11 +1,13 @@
 @font-face {
   font-family: 'AnsleyBold';
-  src: url('./fonts/Ansley Display-Bold.ttf')
+  src: url('./fonts/Ansley Display-Bold.ttf');
+  font-display: swap;
 }
 
 @font-face { 
    font-family: 'mexcellent';
-   src: url('./fonts/mexcellent.regular.otf')
+   src: url('./fonts/mexcellent.regular.otf');
+   font-display: swap;
 }
 
 
@@ -52,7 +54,6 @@ input, button {
   width: 100%;
   background-color: #007ea7;
   background-image: linear-gradient(315deg, #51afa8 1%, #3aafa9 95%);
-  /* background-image: linear-gradient(315deg, #65d1ca 1%, #68c1bdae 95%); */
 }
 
 .signin-background { 
@@ -69,14 +70,6 @@ input, button {
   background-color: #17252A;
 }
 
-.ansley-inline { 
-  font-family: AnsleyInline;
-  font-size: 36;
-}
-.ansley-outline { 
-  font-family: AnsleyOutline;
-  font-size: 36;
-}
 h2 { 
   font-family: AnsleyBold;
   color: white
@@ -124,10 +117,6 @@ h2 {
   background-color: #000000f1;
 }
 
-.content-box { 
-  box-sizing: content-box;
-}
-
 .gap { 
   gap: 20px 2px;
 }
@@ -140,10 +129,6 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.mt--1 { 
-  margin-top: -5px
 }
 
 .select-gap { 
