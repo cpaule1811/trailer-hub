@@ -11,7 +11,6 @@ export default function MovieInfo({ poster_path, title, overview, release_date, 
                     <div className="mt3 f5">Release: {release_date}</div>
                     <div className=" f5">Run time: {runtime}min</div>
                     <div className="f5">Cast: {`${cast[0].name}, ${cast[1].name} & ${cast[2].name}`}</div>
-                    {/* <div >{vote_average}</div> */}
                     <div className="mv2 f6">{overview}</div>
                 </div>
         </div>

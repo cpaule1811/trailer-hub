@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export default function TagSelect({ user }) { 
   const [selected1, setSelected1] = useState(null)

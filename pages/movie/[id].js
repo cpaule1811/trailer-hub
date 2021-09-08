@@ -1,6 +1,7 @@
 import ReactPlayer from 'react-player/youtube'
 import TrailerCard from "../../components/TrailerCard"
 import MovieInfo from "../../components/MovieInfo"
+import Head from 'next/head'
 import { useState } from "react"
 
 export default function Movie({ movie }) { 
@@ -9,6 +10,12 @@ export default function Movie({ movie }) {
     const nextMovies = results.slice(0,5)
    
     return ( 
+       <>
+      <Head>
+        <title>Trailer Hub | {movie.title}</title>
+        <meta name="description" content={`watch ${movie.title} movie trailers`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
           <div className="relative">
             <MovieInfo { ...movie }/>
             <div className="pv3 pa0">
@@ -36,6 +43,7 @@ export default function Movie({ movie }) {
             </div>
           </div>
           </div>
+          </>
     )
 }
 

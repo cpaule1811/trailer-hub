@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from "next/link"
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export default function Signin({ setUser }) { 
     const [emailField, setEmailField] = useState('')
@@ -34,6 +35,12 @@ export default function Signin({ setUser }) {
     }
 
     return ( 
+        <>
+        <Head>
+              <title>Trailer Hub | Register</title>
+              <meta name="description" content="Register to get recommendations on movies" />
+              <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className="flex justify-center signin-container items-center">
               <div className="signin-background dib w-25 h-50 br3 tc pa3 shadow-2 pv5">
               <h1 className="f3 Turquoise mb4">Sign In</h1> 
@@ -63,5 +70,6 @@ export default function Signin({ setUser }) {
                </form>
                </div>
         </div>
+        </>
     )
 }

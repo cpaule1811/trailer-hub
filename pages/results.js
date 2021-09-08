@@ -1,8 +1,14 @@
 import MovieCard from "../components/MovieCard"
+import Head from "next/head"
 
 export default function Results({movies, search}) { 
     return ( 
         <>
+        <Head>
+              <title>Trailer Hub | Search Results</title>
+              <meta name="description" content="Find Movie Trailers" />
+              <link rel="icon" href="/favicon.ico" />
+        </Head>
           {movies.length ?
             <div className="flex flex-wrap justify-center gap mt4">
                {movies.map(item => <MovieCard key={item.id} movie={item}/>)}

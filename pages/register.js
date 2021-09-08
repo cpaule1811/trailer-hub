@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export default function Register({ setUser }) { 
    const [passwordField, setPasswordField] = useState("")
@@ -34,6 +35,12 @@ export default function Register({ setUser }) {
    }
 
     return ( 
+        <>
+        <Head>
+              <title>Trailer Hub | Sign In</title>
+              <meta name="description" content="Sign in to get recommendations for movie trailers" />
+              <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className="flex justify-center signin-container items-center">
               <div className="signin-background dib w2 h-100 br3 tc pa3 shadow-2 pv5">
               <h1 className="f3 Turquoise mb4">Register</h1> 
@@ -63,5 +70,6 @@ export default function Register({ setUser }) {
                </form>
                </div>
           </div>
+          </>
     )
 }
