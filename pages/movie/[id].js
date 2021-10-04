@@ -3,6 +3,8 @@ import TrailerCard from "../../components/TrailerCard";
 import MovieInfo from "../../components/MovieInfo";
 import Head from "next/head";
 import { useState } from "react";
+import { Box } from "@mui/system";
+import { Container } from "@mui/material";
 
 export default function Movie({ movie }) {
   const [videoIndex, setVideoIndex] = useState(0);
@@ -19,52 +21,64 @@ export default function Movie({ movie }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <Box
+        display="flex"
+        sx={{
+          "@media screen and (max-width: 700px)": {
+            flexDirection: "column",
+          },
+        }}
+      >
         <MovieInfo {...movie} />
-          <div className="movie-pm">
-            <div className="bg-black">
-              {nextMovies.length ? (
-                <ReactPlayer
-                  url={`https://www.youtube.com/watch?v=${nextMovies[videoIndex].key}`}
-                  width="100%"
-                  height="70vh"
-                  className="pa3"
-                  config={{
-                    youtube: {
-                      playerVars: {
-                        controls: 1,
-                        rel: 1,
-                      },
+        <Box width="100%">
+          <Container maxWidth={false} sx={{ bgcolor: "#111111" }}>
+            {nextMovies.length ? (
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${nextMovies[videoIndex].key}`}
+                width="100%"
+                height="70vh"
+                className="pa3"
+                config={{
+                  youtube: {
+                    playerVars: {
+                      controls: 1,
+                      rel: 1,
                     },
-                  }}
-                  onEnded={() =>
-                    videoIndex < nextMovies.length - 1 &&
-                    setVideoIndex(videoIndex + 1)
-                  }
-                />
-              ) : (
-                <div>
-                  Sorry, looks like this film does not have any available
-                  trailers
-                </div>
-              )}
-            </div>
-            <div className="flex carousel overflow-x-hidden auto flex-wrap justify-center mt2 pa3 mh-trailer-card">
-              {nextMovies.map((trailer, i) => {
-                if (i !== videoIndex)
-                  return (
-                    <TrailerCard
-                      key={trailer.key}
-                      ytKey={trailer.key}
-                      name={trailer.name}
-                      index={i}
-                      setVideoIndex={setVideoIndex}
-                    />
-                  );
-              })}
-            </div>
-          </div>
-        </div>
+                  },
+                }}
+                onEnded={() =>
+                  videoIndex < nextMovies.length - 1 &&
+                  setVideoIndex(videoIndex + 1)
+                }
+              />
+            ) : (
+              <div>
+                Sorry, looks like this film does not have any available trailers
+              </div>
+            )}
+          </Container>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            gap={1}
+            p={1}
+          >
+            {nextMovies.map((trailer, i) => {
+              if (i !== videoIndex)
+                return (
+                  <TrailerCard
+                    key={trailer.key}
+                    ytKey={trailer.key}
+                    name={trailer.name}
+                    index={i}
+                    setVideoIndex={setVideoIndex}
+                  />
+                );
+            })}
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }

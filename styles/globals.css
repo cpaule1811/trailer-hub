@@ -18,6 +18,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.touch-scroll { 
+  overflow-x: hidden
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -104,17 +108,6 @@ h2 {
   height: 375px;
 }
 
-.bg-turquoise {
-  background-color: #3aafa9;
-}
-
-.fade {
-  background-image: linear-gradient(to bottom, #00000000, #000000 75%);
-}
-
-.background-black {
-  background-color: #000000f1;
-}
 
 .gap {
   gap: 20px 2px;
@@ -122,6 +115,7 @@ h2 {
 
 .bg-custom-black {
   background-color: #2e2d2d;
+  opacity: 0.3;
 }
 
 .youtube-button-pos {
@@ -188,4 +182,8 @@ h2 {
 
 .mt4-5 {
   margin-top: 44px;
+}
+
+.child { 
+  display: none;
 }

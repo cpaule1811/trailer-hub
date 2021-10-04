@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import MovieCardCarousel from '../components/MovieCardCarousel'
 import { useEffect, useState } from 'react'
+import Banner from '../components/Banner'
+import { Box } from '@mui/system'
 
 export default function Home(props) {
   const { drama, action, animation, romance, comedy, user } = props
@@ -18,7 +20,7 @@ export default function Home(props) {
   },[isSignedIn, userId])
 
   return (
-    <div>
+    <>
       <Head>
         <title>Trailer Hub</title>
         <meta name="description" content="A site to watch all your favourite movie trailers." />
@@ -26,16 +28,17 @@ export default function Home(props) {
       </Head>
 
       <main >
-        <div className="pt3">
+        <Banner/>
+        <Box pt={3}>
         {isSignedIn && <MovieCardCarousel genre="Reccomended for you" movies={recommended}/>}
         <MovieCardCarousel genre="Action" movies={action}/>
         <MovieCardCarousel genre="Drama" movies={drama}/>
         <MovieCardCarousel genre="Animation" movies={animation}/>
         <MovieCardCarousel genre="Comedy" movies={comedy}/>
         <MovieCardCarousel genre="Romance" movies={romance}/>
-        </div>
+        </Box>
       </main>
-      </div>
+      </>
   )
 }
 
