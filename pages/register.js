@@ -1,14 +1,13 @@
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useUpdateUser } from "../components/UserContext";
 import Head from "next/head";
-import { Box } from "@mui/system";
-import { Button, TextField, Typography, Card } from "@mui/material";
 import Form from "../components/Form";
 
-export default function Register({ setUser }) {
+export default function Register() {
   const [error, setError] = useState("");
   const router = useRouter();
+  const updateUser = useUpdateUser();
 
   const handleRegister = async (e, passwordField, emailField) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ export default function Register({ setUser }) {
       });
       const user = await resp.json();
       if (user.user_id) {
-        setUser({ userId: user.user_id, isSignedIn: true });
+        updateUser({ userId: user.user_id, isSignedIn: true });
         return router.push("/select");
       }
       setError(user.message);

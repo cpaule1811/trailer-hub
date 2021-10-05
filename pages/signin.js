@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Form from "../components/Form";
+import { useUpdateUser } from '../components/UserContext'
 
-export default function Signin({ setUser, setLoadComplete }) {
+export default function Signin({ setLoadComplete }) {
   const [error, setError] = useState("");
   const router = useRouter();
+  const updateUser = useUpdateUser()
 
   const handleSignIn = async (e, passwordField, emailField) => {
     e.preventDefault();
@@ -24,7 +26,9 @@ export default function Signin({ setUser, setLoadComplete }) {
       });
       const user = await resp.json();
       if (user.user_id) {
-        setUser({ userId: user.user_id, isSignedIn: true });
+        const watchlistResp = await fetch(`/api/getwatchlist/${user.user_id}`)
+        const watchlist = await watchlistResp.json()
+        updateUser({ userId: user.user_id, isSignedIn: true, watchlist });
         return router.push("/");
       }
       setError(user.message);

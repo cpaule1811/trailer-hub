@@ -10,6 +10,7 @@ import "../styles/media.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "@mui/material/styles";
+import { UserProvider } from "../components/UserContext";
 
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../utils/createEmotionCache";
@@ -59,6 +60,7 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
+      <UserProvider>
         <NavBar user={user} setUser={setUser} />
         <Box marginTop="84px">
           <LoadingBar
@@ -73,6 +75,7 @@ export default function MyApp(props) {
           />
         </Box>
         <Footer />
+        </UserProvider>
       </ThemeProvider>
     </CacheProvider>
   );

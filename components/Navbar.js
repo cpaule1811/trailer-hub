@@ -8,14 +8,23 @@ import {
   IconButton,
   Avatar,
   Menu,
-  Divider,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import logo from "../img/logo.svg";
 import Image from "next/image";
+import { useUser, useUpdateUser } from "./UserContext";
 
-export default function NavBar({ user, setUser }) {
+const hidden = {
+  display: "none",
+  "@media (max-width: 600px)": {
+    display: "block",
+  },
+};
+
+export default function NavBar() {
+  const user = useUser();
   const { isSignedIn } = user;
+  const updateUser = useUpdateUser();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -29,32 +38,42 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <AppBar>
-      <Box display="flex">
+      <Box display="flex" alignItems="center" height="100%">
         <Link href="/" passHref>
           <Box
             position="relative"
             minHeight={55}
             minWidth={270}
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+              "@media (max-width: 370px)": { minWidth: 190 },
+            }}
           >
             <Image src={logo} layout="fill" alt="Trailer Hub Logo" />
           </Box>
         </Link>
-        <Toolbar sx={{ width: "100%", justifyContent: "flex-end" }}>
+        <Toolbar sx={{ width: "100%", justifyContent: "flex-end", height: 64 }}>
           <Box
             sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
           >
-            <Link href="/whats_new" passHref>
-              <Typography variant="link" sx={{ p: 1 }} component="a">
-                What&apos;s New
-              </Typography>
-            </Link>
-            <Link href="/genres" passHref>
-              <Typography variant="link" sx={{ p: 1 }} component="a">
-                Genres
-              </Typography>
-            </Link>
-            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+            <Box
+              mr={2}
+              sx={{
+                "@media (max-width: 600px)": { display: "none" },
+              }}
+            >
+              <Link href="/whats_new" passHref>
+                <Typography variant="link" sx={{ p: 1 }} component="a">
+                  What&apos;s New
+                </Typography>
+              </Link>
+              <Link href="/genres" passHref>
+                <Typography variant="link" sx={{ p: 1 }} component="a">
+                  Genres
+                </Typography>
+              </Link>
+            </Box>
+            <IconButton onClick={handleClick} size="small">
               {isSignedIn ? (
                 <Avatar sx={{ width: 45, height: 45 }}>ce</Avatar>
               ) : (
@@ -96,17 +115,35 @@ export default function NavBar({ user, setUser }) {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
+            <Link href="/whats_new" passHref>
+              <MenuItem component="a" sx={hidden}>
+                {" "}
+                What&apos;s New
+              </MenuItem>
+            </Link>
+            <Link href="/genres" passHref>
+              <MenuItem component="a" sx={hidden} divider>
+                Genres
+              </MenuItem>
+            </Link>
             {isSignedIn ? (
               <>
                 <MenuItem component="a">Profile</MenuItem>
-                <MenuItem component="a">My List</MenuItem>
-                <Divider />
-                <MenuItem>Signout</MenuItem>
+                <MenuItem component="a" divider>
+                  My List
+                </MenuItem>
+                <MenuItem
+                  onClick={() =>
+                    updateUser({ isSignedIn: false, userId: null, watchlist: [] })
+                  }
+                >
+                  Signout
+                </MenuItem>
               </>
             ) : (
               <>
                 <Link href="/signin" passHref>
-                  <MenuItem component="a">Signin</MenuItem>
+                  <MenuItem component="a">Sign in</MenuItem>
                 </Link>
                 <Link href="/register" passHref>
                   <MenuItem component="a">Register</MenuItem>

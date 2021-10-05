@@ -3,10 +3,11 @@ import MovieCardCarousel from '../components/MovieCardCarousel'
 import { useEffect, useState } from 'react'
 import Banner from '../components/Banner'
 import { Box } from '@mui/system'
+import { useUser } from '../components/UserContext'
 
 export default function Home(props) {
-  const { drama, action, animation, romance, comedy, user } = props
-  const { isSignedIn, userId } = user
+  const { drama, action, animation, romance, comedy } = props
+  const { isSignedIn, userId, watchlist } = useUser()
   const [recommended, setRecommended] = useState([])
 
   useEffect(() => {

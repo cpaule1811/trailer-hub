@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 export default function genrePage({ movies, genre }) {
   return (
     <MovieList title={genre}>
-      <Box display="flex" flexWrap="wrap">
+      <Box display="flex" flexWrap="wrap" justifyContent="center">
         {movies.map((item) => (
           <MovieCard key={item.id} movie={item} />
         ))}
