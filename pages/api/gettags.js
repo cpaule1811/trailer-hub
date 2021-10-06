@@ -11,7 +11,7 @@ export default async function handler(req, res) {
        res.json({genreString: genreString})
     }
     catch { 
-       res.status(400).json()
+       res.json('error')
     }
     db.destroy()
 }

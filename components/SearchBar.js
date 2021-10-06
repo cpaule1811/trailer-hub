@@ -1,37 +1,44 @@
-import Image from 'next/image'
-import search from '../img/search.svg'
-import { useState } from 'react' 
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { Paper, Divider, InputBase, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-export default function SearchBar() { 
+export default function SearchBar() {
+  const [searchfield, setSearchField] = useState("");
+  const router = useRouter();
 
-    const [searchfield, setSearchField] = useState("")
-    const router = useRouter()
+  const handleSearchForm = (e) => {
+    e.preventDefault();
+    router.push({
+      pathname: "/results",
+      query: { search: searchfield || "a" },
+    });
+  };
 
-    const handleSearchForm = (e) => { 
-        e.preventDefault()
-        router.push({ pathname: '/results', query: { search: searchfield || 'a' }})
-    }
-
-    return (
-      <div className="w-70-ns pv3">
-      <form onSubmit={(e) => handleSearchForm(e)}>
-      <label htmlFor="Searchbar" className="back" style={{position: "absolute"}}>search</label>
-       <div className="flex mh6-ns mh4-m justify-between mh2 mv2 center shadow-3 h2">
-           <input 
-               onChange={(e) => setSearchField(e.target.value)} 
-               type="search" 
-               className="w-100 pl2 br2 br--left" 
-               style={{lineHeight: "1.00"}}
-               value={searchfield}
-               id="Searchbar"
-            />
-           <Link href={{ pathname: '/results', query: { search: searchfield || "a" }}} passHref>
-               <div className="w3 tc dt-background br2 br--right pointer pv1"><Image src={search} alt="search icon"/></div>
-            </Link>
-       </div>
-       </form>
-       </div>
-    )
+  return (
+    <Paper
+      color="primary"
+      component="form"
+      sx={{
+        p: "2px 4px",
+        display: "flex",
+        alignItems: "center",
+        width: 400,
+        zIndex: 1000,
+      }}
+      onSubmit={(e) => handleSearchForm(e)}
+    >
+      <InputBase
+        sx={{ ml: 1, flex: 1, pt: "3px" }}
+        placeholder="Search movie trailers"
+        inputProps={{ "aria-label": "search google maps" }}
+        value={searchfield}
+        onChange={(e) => setSearchField(e.target.value)}
+      />
+      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+      <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+    </Paper>
+  );
 }

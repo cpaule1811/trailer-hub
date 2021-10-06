@@ -9,15 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.4.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/lab": "^5.0.0-alpha.49",
+    "@mui/material": "^5.0.2",
+    "@mui/styles": "^5.0.1",
     "bcrypt": "^5.0.1",
     "knex": "^0.95.11",
     "next": "11.1.0",
+    "npm": "^7.24.1",
     "pg": "^8.7.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-player": "^2.9.0",
-    "tachyons": "^4.12.0",
-    "tachyons-box-sizing": "^3.2.2"
+    "react-player": "^2.9.0"
   },
   "devDependencies": {
     "eslint": "7.32.0",

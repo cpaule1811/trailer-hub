@@ -1,21 +1,56 @@
-import NavBar from '../components/Navbar';
-import { useState } from 'react'
-import 'tachyons';
-import '../styles/globals.css';
-import '../styles/media.css';
+import LoadingBar from "../components/LoadingBar";
+import Layout from "../components/layout";;
+import { useState, useEffect } from "react";
+import "../styles/globals.css";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Providers from "../components/Providers";
+import createEmotionCache from "../utils/createEmotionCache";
 
-function MyApp({ Component, pageProps }) {
-  const [user, setUser] = useState({ 
-    isSignedIn: false,
-    userId: null
-  })
+const clientSideEmotionCache = createEmotionCache();
+
+export default function MyApp(props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const router = useRouter();
+  const [loadComplete, setLoadComplete] = useState(true);
+
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      setLoadComplete(true);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      setLoadComplete(false);
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
-    <div>
-      <div className="background back fixed w-100"></div>
-      <NavBar user={user} setUser={setUser}/>
-      <Component {...pageProps} user={user} setUser={setUser}/>
-     </div>
-  )
+    <Providers emotionCache={emotionCache}>
+      <Head>
+        <title>Trailer Hub</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <Layout>
+        <LoadingBar
+          loadComplete={loadComplete}
+          setLoadComplete={setLoadComplete}
+        />
+        <Component {...pageProps} setLoadComplete={setLoadComplete} />
+      </Layout>
+    </Providers>
+  );
 }
-
-export default MyApp

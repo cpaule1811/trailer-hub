@@ -1,36 +1,72 @@
-import MovieCard from './MovieCard'
-import Image from 'next/image'
-import { useRef } from 'react'
-import right from '../img/right.svg'
-import left from '../img/left.svg'
+import MovieCard from "./MovieCard";
+import { useRef, useState } from "react";
+import { Divider, Typography, IconButton } from "@mui/material";
+import { Box } from "@mui/system";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
-export default function MovieCardCarousel({ genre, movies }) { 
-    const contentWrapper = useRef(null);
+export default function MovieCardCarousel({ genre, movies }) {
+  const contentWrapper = useRef(null);
+  const [rightArrowOn, setRightArrowOn] = useState(true);
+  const [leftArrowOn, setLeftArrowOn] = useState(false);
 
-    const sideScroll = (speed, distance, step) => {
-        contentWrapper.current.scrollLeft += step;
-        let scrollAmount = 0;
-        const slideTimer = setInterval(() => {
-            contentWrapper.current.scrollLeft += step;
-            scrollAmount += Math.abs(step);
-            if (scrollAmount >= distance) {
-              clearInterval(slideTimer);
-            }
-          }, speed);
-      };
+  const sideScroll = (speed, distance, step) => {
+    contentWrapper.current.scrollLeft += step;
+    let scrollAmount = 0;
+    const slideTimer = setInterval(() => {
+      contentWrapper.current.scrollLeft += step;
+      scrollAmount += Math.abs(step);
+      if (scrollAmount >= distance) {
+        clearInterval(slideTimer);
+      }
+      arrowOn(contentWrapper.current);
+    }, speed);
+  };
 
-    return (
-        <div>
-        <div className="Dark-Blue ml3 f3 b">{genre}</div>
-        <div className="flex overflow-x-hidden touch-scroll" ref={contentWrapper}>
-           <div onClick={() => sideScroll(5, window.innerWidth, -5)} className={`absolute left-1 mt6 pv4 pointer front grow-large o-40 glow touch-hide`}>
-              <Image src={left} alt="left-arrow"/>
-            </div>
-           {movies.map((item) => <MovieCard key={item.id} movie={item}/>)}
-           <div onClick={() => sideScroll(5, window.innerWidth, 5)} className="absolute right-1 mt6 pv4 pointer front grow-large o-40 glow touch-hide">
-               <Image src={right} alt="right arrow"/>
-            </div>
-        </div>
-        </div>
-    )
-} 
+  const arrowOn = (current) => {
+    setLeftArrowOn(current.scrollLeft > 0);
+    setRightArrowOn(
+      current.scrollLeft + 1 <= current.scrollWidth - current.clientWidth
+    );
+  };
+
+  return (
+    <Box position="relative">
+      <Box pl={2} pr={2}>
+        <Typography variant="h5" color="primary">
+          {genre}
+        </Typography>
+        <Divider />
+      </Box>
+      <Box display="flex" ref={contentWrapper} className="touch-scroll">
+        {movies.map((item) => (
+          <MovieCard key={item.id} movie={item} />
+        ))}
+      </Box>
+      {leftArrowOn && (
+        <IconButton
+          onClick={() => sideScroll(5, window.innerWidth, -5)}
+          variant="carousel"
+          color="neutral"
+          sx={{ position: "absolute", top: 210 }}
+        >
+          <ChevronLeftIcon fontSize="inherit" />
+        </IconButton>
+      )}
+      {rightArrowOn && (
+        <IconButton
+          onClick={() => sideScroll(5, window.innerWidth, 5)}
+          variant="carousel"
+          color="neutral"
+          sx={{
+            position: "absolute",
+            right: 0,
+            top: 210,
+          }}
+        >
+          <ChevronRightIcon fontSize="inherit" />
+        </IconButton>
+      )}
+    </Box>
+  );
+}
