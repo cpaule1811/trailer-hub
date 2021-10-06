@@ -83,6 +83,7 @@ export default function NavBar() {
           </Box>
           <Menu
             anchorEl={anchorEl}
+            name="signin menu"
             open={open}
             onClose={handleClose}
             onClick={handleClose}
@@ -128,12 +129,9 @@ export default function NavBar() {
               </MenuItem>
             </Link>
             {isSignedIn ? (
-              <>
-              <Link href="/profile" passHref>
-                <MenuItem component="a">Profile</MenuItem>
-                </Link>
+              <Box>
                 <Link href="/list" passHref>
-                <MenuItem component="a" divider>
+                <MenuItem component="a">
                   My List
                 </MenuItem>
                 </Link>
@@ -144,16 +142,16 @@ export default function NavBar() {
                 >
                   Signout
                 </MenuItem>
-              </>
+              </Box>
             ) : (
-              <>
+              <Box>
                 <Link href="/signin" passHref>
                   <MenuItem component="a">Sign in</MenuItem>
                 </Link>
                 <Link href="/register" passHref>
                   <MenuItem component="a">Register</MenuItem>
                 </Link>
-              </>
+              </Box>
             )}
           </Menu>
         </Toolbar>

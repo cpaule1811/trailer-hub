@@ -1,5 +1,6 @@
 import MovieList from "../../components/MovieList";
 import MovieCard from "../../components/MovieCard";
+import { genres } from "../../data/genreData"
 import { Box } from "@mui/system";
 
 export default function genrePage({ movies, genre }) {
@@ -35,10 +36,11 @@ export async function getStaticProps({ params }) {
   `;
   const res = await fetch(url);
   const latest = await res.json();
+  const genreInfo = genres.filter(item => Number(genreid) === item.genre_id)
   return {
     props: {
       movies: latest.results,
-      genre: "action",
+      genre: genreInfo[0].genre
     },
   };
 }

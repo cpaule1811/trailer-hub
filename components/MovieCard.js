@@ -5,6 +5,7 @@ import { Card, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import ReplayIcon from "@mui/icons-material/Replay";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { useUser, useUpdateUser } from "../hooks/UserContext";
@@ -13,11 +14,12 @@ import { useInWatchlist } from "../hooks/useInWatchlist";
 
 export default function MovieCard({ movie }) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { poster_path, id, title, overview } = movie;
   const user = useUser();
   const { userId, isSignedIn, watchlist } = user;
-  const add = useAddToWatchlist(setLoading, movie);
-  const remove = useRemoveFromWatchlist(setLoading, movie);
+  const add = useAddToWatchlist(setLoading, movie, setError);
+  const remove = useRemoveFromWatchlist(setLoading, movie, setError);
   const inWatchlist = useInWatchlist(id);
   const url = `https://image.tmdb.org/t/p/w300${poster_path}`;
   const desc = overview.includes(".")
@@ -65,34 +67,46 @@ export default function MovieCard({ movie }) {
               </Typography>
             </Box>
           </Link>
-          {isSignedIn &&
-            (!inWatchlist ? (
-              <LoadingButton
-                color="third"
-                onClick={() => add()}
-                loading={loading}
-                loadingPosition="center"
-                startIcon={<AddIcon />}
-                loadingIndicator={<CircularProgress color="third" size={20} />}
-                variant="outlined"
-                sx={{ width: "100%", zIndex: 9000 }}
-              >
-                Add to List
-              </LoadingButton>
-            ) : (
-              <LoadingButton
-                color="third"
-                onClick={() => remove()}
-                loading={loading}
-                loadingPosition="center"
-                startIcon={<RemoveIcon />}
-                loadingIndicator={<CircularProgress color="third" size={20} />}
-                variant="outlined"
-                sx={{ width: "100%", zIndex: 9000 }}
-              >
-                Remove from List
-              </LoadingButton>
-            ))}
+          {isSignedIn && (error ? (
+            <LoadingButton
+              color="third"
+              onClick={() => add()}
+              loading={loading}
+              loadingPosition="center"
+              startIcon={<ReplayIcon />}
+              loadingIndicator={<CircularProgress color="third" size={20} />}
+              variant="outlined"
+              sx={{ width: "100%", zIndex: 9000 }}
+            >
+              Retry
+            </LoadingButton>
+          ) : !inWatchlist ? (
+            <LoadingButton
+              color="third"
+              onClick={() => add()}
+              loading={loading}
+              loadingPosition="center"
+              startIcon={<AddIcon />}
+              loadingIndicator={<CircularProgress color="third" size={20} />}
+              variant="outlined"
+              sx={{ width: "100%", zIndex: 9000 }}
+            >
+              Add to List
+            </LoadingButton>
+          ) : (
+            <LoadingButton
+              color="third"
+              onClick={() => remove()}
+              loading={loading}
+              loadingPosition="center"
+              startIcon={<RemoveIcon />}
+              loadingIndicator={<CircularProgress color="third" size={20} />}
+              variant="outlined"
+              sx={{ width: "100%", zIndex: 9000 }}
+            >
+              Remove from List
+            </LoadingButton>)
+          )}
         </Box>
       </Card>
     </Box>

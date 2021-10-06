@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import { genres } from "../data/genreData"
 import { Divider, Typography, Container, Button, Paper } from "@mui/material";
 import { Box } from "@mui/system";
+import { useUser } from "../hooks/UserContext";
 
-export default function TagSelect({ user }) {
+export default function TagSelect() {
   const [selected1, setSelected1] = useState(null);
   const [selected2, setSelected2] = useState(null);
   const [selected3, setSelected3] = useState(null);
   const [error, setError] = useState("");
-  const { userId } = user;
+  const { userId } = useUser();
   const router = useRouter();
 
   const handleSelected = (genre) => {

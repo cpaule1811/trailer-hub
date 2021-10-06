@@ -15,13 +15,13 @@ export default function Footer() {
         }
       }}>
         <Link href="https://github.com/cpaule1811/trailer-hub" passHref>
-          <Typography variant="link2" component="a" target="_blank">
+          <Typography variant="link2" component="a" target="_blank" rel="nofollow noopener">
             Source Code
           </Typography>
         </Link>
         <br />
         <Link href="https://www.charlieedwards.dev/" passHref>
-          <Typography variant="link2" component="a" target="_blank">
+          <Typography variant="link2" component="a" target="_blank" rel="nofollow noopener">
             Portfolio
           </Typography>
         </Link>
@@ -32,12 +32,12 @@ export default function Footer() {
         </Typography>
         <Box display="flex" justifyContent="center" gap="1px" height="50px">
          <Link href="https://github.com/cpaule1811" passHref>
-          <IconButton component="a" target="_blank">
+          <IconButton component="a" target="_blank" rel="nofollow noopener">
             <GithubIcon sx={{ color: "#211F1F", fontSize: 32 }} />
           </IconButton>
           </Link>
           <Link href="https://www.linkedin.com/in/charlie-edwards-52025b188/" passHref>
-          <IconButton componet="a" target="_blank">
+          <IconButton componet="a" target="_blank" rel="nofollow noopener">
             <LinkedInIcon sx={{ color: "#1877F2", fontSize: 32 }} />
           </IconButton>
           </Link>

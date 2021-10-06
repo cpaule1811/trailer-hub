@@ -31,7 +31,10 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <Box pt={3} width="100%" sx={{overflow: "hidden"}}>
+      <Box pt={3} width="100%" sx={{ overflow: "hidden" }}>
+        {watchlist.length > 0 &&
+          <MovieCardCarousel genre="List" movies={watchlist} />
+        }
         {isSignedIn && (
           <MovieCardCarousel genre="Reccomended for you" movies={recommended} />
         )}

@@ -32,9 +32,10 @@ export default function Signin({ setLoadComplete }) {
         return router.push("/");
       }
       setError(user.message);
-    } catch (e) {
       setLoadComplete(true);
+    } catch (e) {
       setError(e);
+      setLoadComplete(true);
     }
   };
 
@@ -48,7 +49,7 @@ export default function Signin({ setLoadComplete }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Form signin={true} handleForm={handleSignIn} />
+      <Form signin={true} handleForm={handleSignIn} error={error}/>
     </>
   );
 }

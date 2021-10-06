@@ -3,10 +3,9 @@ import { useState } from "react";
 import { Box } from "@mui/system";
 import { Button, TextField, Typography, Card } from "@mui/material";
 
-export default function Form({ signin, handleForm }) {
+export default function Form({ signin, handleForm, error }) {
   const [passwordField, setPasswordField] = useState("");
   const [emailField, setEmailField] = useState("");
-  const [error, setError] = useState("");
   const href = signin ? "register" : "signin"
 
   return (
@@ -23,7 +22,7 @@ export default function Form({ signin, handleForm }) {
         <Typography variant="h5" color="secondary">
           {signin ? "Sign in" : "Register"}
         </Typography>
-        {error && <Typography color="red">{error}</Typography>}
+        {error && <Typography color="error">{error}</Typography>}
         <Box>
           <TextField
             type="email"

@@ -4,7 +4,7 @@ import { useUpdateUser } from "../hooks/UserContext";
 import Head from "next/head";
 import Form from "../components/Form";
 
-export default function Register() {
+export default function Register({ setLoadComplete }) {
   const [error, setError] = useState("");
   const router = useRouter();
   const updateUser = useUpdateUser();
@@ -28,8 +28,10 @@ export default function Register() {
         return router.push("/select");
       }
       setError(user.message);
+      setLoadComplete(true);
     } catch (error) {
       setError(error.message);
+      setLoadComplete(true);
     }
   };
 
@@ -43,7 +45,7 @@ export default function Register() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Form handleForm={handleRegister} signin={false} />
+      <Form handleForm={handleRegister} signin={false} error={error}/>
     </>
   );
 }

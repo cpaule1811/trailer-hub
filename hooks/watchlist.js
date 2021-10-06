@@ -1,6 +1,6 @@
 import { useUpdateUser, useUser } from "./UserContext";
 
-export function useAddToWatchlist(setLoading, movie) {
+export function useAddToWatchlist(setLoading, movie, setError) {
   const updateUser = useUpdateUser();
   const user = useUser();
   return async () => {
@@ -9,12 +9,14 @@ export function useAddToWatchlist(setLoading, movie) {
     if (result === 1) {
       const watchlist = await getNewWatchlist(user.userId);
       updateUser({ ...user, watchlist });
-      setLoading(false);
+    } else {
+      setError(true);
     }
+    setLoading(false);
   };
 }
 
-export function useRemoveFromWatchlist(setLoading, movie) {
+export function useRemoveFromWatchlist(setLoading, movie, setError) {
   const updateUser = useUpdateUser();
   const user = useUser();
   const { id } = movie;
@@ -24,8 +26,10 @@ export function useRemoveFromWatchlist(setLoading, movie) {
     if (result === 1) {
       const watchlist = await getNewWatchlist(user.userId);
       updateUser({ ...user, watchlist });
-      setLoading(false);
+    } else {
+      setError(true);
     }
+    setLoading(false);
   };
 }
 
@@ -46,7 +50,9 @@ async function addListItem(movie, user_id) {
       },
     });
     return add.json();
-  } catch {}
+  } catch {
+    return 0;
+  }
 }
 
 async function removeListItem(id, user_id) {
@@ -61,8 +67,10 @@ async function removeListItem(id, user_id) {
         "Content-Type": "application/json",
       },
     });
-    return remove.json()
-  } catch {}
+    return remove.json();
+  } catch {
+    return 0;
+  }
 }
 
 async function getNewWatchlist(userId) {

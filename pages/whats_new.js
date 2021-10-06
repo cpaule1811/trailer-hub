@@ -6,6 +6,8 @@ import Head from "next/head";
 export default function LatestPage({ latestReleases }) {
   return (
     <MovieList title="Latest Hits">
+    <Head>
+    </Head>
       <Box display="flex" flexWrap="wrap" justifyContent="center">
         {latestReleases.map((item, key) => (
           <MovieCard key={item.id} movie={item} />
