@@ -1,5 +1,5 @@
 import LoadingBar from "../components/LoadingBar";
-import Layout from "../components/layout";;
+import Layout from "../components/layout";
 import { useState, useEffect } from "react";
 import "../styles/globals.css";
 import Head from "next/head";

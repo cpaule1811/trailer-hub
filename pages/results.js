@@ -6,24 +6,24 @@ import MovieList from "../components/MovieList";
 
 export default function Results({ movies, search }) {
   return (
-      <MovieList title="Top Results">
-        <Head>
-          <title>Trailer Hub | Search Results</title>
-          <meta name="description" content="Find Movie Trailers" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        {movies.length ? (
-          <Box display="flex" flexWrap="wrap" justifyContent="center">
-            {movies.map((item) => (
-              <MovieCard key={item.id} movie={item} />
-            ))}
-          </Box>
-        ) : (
-          <Typography variant="h4" sx={{ textAlign:"center" }}>
-            Sorry, we could not find any films matching {search}
-          </Typography>
-        )}
-      </MovieList>
+    <MovieList title="Top Results">
+      <Head>
+        <title>Trailer Hub | Search Results</title>
+        <meta name="description" content="Find Movie Trailers" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {movies.length ? (
+        <Box display="flex" flexWrap="wrap" justifyContent="center">
+          {movies.map((item) => (
+            <MovieCard key={item.id} movie={item} />
+          ))}
+        </Box>
+      ) : (
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
+          Sorry, we could not find any films matching {search}
+        </Typography>
+      )}
+    </MovieList>
   );
 }
 

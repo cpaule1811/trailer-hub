@@ -45,7 +45,7 @@ export default function Register({ setLoadComplete }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Form handleForm={handleRegister} signin={false} error={error}/>
+      <Form handleForm={handleRegister} signin={false} error={error} />
     </>
   );
 }

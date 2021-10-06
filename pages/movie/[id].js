@@ -58,7 +58,11 @@ export default function Movie({ movie }) {
             )}
           </Container>
           <Box p={1}>
-          <Typography color="primary" sx={{ justifySelf:"start" }}>More Trailers</Typography><Divider/></Box>
+            <Typography color="primary" sx={{ justifySelf: "start" }}>
+              More Trailers
+            </Typography>
+            <Divider />
+          </Box>
           <Box
             display="flex"
             flexWrap="wrap"
@@ -66,8 +70,6 @@ export default function Movie({ movie }) {
             gap={1}
             p={1}
           >
-            
-            
             {nextMovies.map((trailer, i) => {
               if (i !== videoIndex)
                 return (
@@ -82,9 +84,7 @@ export default function Movie({ movie }) {
             })}
           </Box>
         </Box>
-        
       </Box>
-     
     </>
   );
 }
