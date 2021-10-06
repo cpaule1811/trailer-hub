@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Box } from "@mui/system";
 import bannerImage from "../img/front_banner.jpg";
-import SearchBar from "./Searchbar";
+import SearchBar from "./SearchBar";
 import { Typography } from "@mui/material";
 
 export default function Banner() {
