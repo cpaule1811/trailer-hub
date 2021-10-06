@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Form from "../components/Form";
-import { useUpdateUser } from '../components/UserContext'
+import { useUpdateUser } from '../hooks/UserContext'
 
 export default function Signin({ setLoadComplete }) {
   const [error, setError] = useState("");

@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 
 export default function Banner() {
   return (
-    <Box height={550} marginTop="" position="relative">
+    <Box height={550} position="relative" >
       <Box position="relative" height="100%" minHeight={400} width="auto">
         <Image src={bannerImage} alt="" layout="fill" objectFit="cover" />
       </Box>

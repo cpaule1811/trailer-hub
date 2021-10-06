@@ -16,7 +16,7 @@ export default function LatestPage({ latestReleases }) {
 }
 
 export async function getServerSideProps() {
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=67fababd59c02f4ae576177be7083836&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&vote_average.gte=8&with_watch_monetization_types=flatrate
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=67fababd59c02f4ae576177be7083836&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&vote_average.gte=8&vote_count.gte=5&with_watch_monetization_types=flatrate
   `;
   const res = await fetch(url);
   const latest = await res.json();

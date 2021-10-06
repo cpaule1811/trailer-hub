@@ -4,60 +4,25 @@ import { Box } from "@mui/system";
 import { Card, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
-import { useUser, useUpdateUser } from "./UserContext";
+import { useUser, useUpdateUser } from "../hooks/UserContext";
+import { useAddToWatchlist, useRemoveFromWatchlist } from "../hooks/watchlist";
+import { useInWatchlist } from "../hooks/useInWatchlist";
 
 export default function MovieCard({ movie }) {
   const [loading, setLoading] = useState(false);
-  const [resp, setResp] = useState(2);
   const { poster_path, id, title, overview } = movie;
   const user = useUser();
   const { userId, isSignedIn, watchlist } = user;
-  const updateUser = useUpdateUser();
-  const watchlistIds = watchlist.map((item) => {
-    return item.id;
-  });
+  const add = useAddToWatchlist(setLoading, movie);
+  const remove = useRemoveFromWatchlist(setLoading, movie);
+  const inWatchlist = useInWatchlist(id);
   const url = `https://image.tmdb.org/t/p/w300${poster_path}`;
   const desc = overview.includes(".")
     ? overview.substring(0, overview.indexOf(".") + 1)
     : overview;
-
-  const inWatchlist = () => {
-    return watchlistIds.includes(id);
-  };
-
-  const updateWatchlist = async () => {
-    const resp = await fetch(`/api/getwatchlist/${userId}`);
-    const watchlist = await resp.json();
-    updateUser({ ...user, watchlist });
-  };
-
-  const addToWatchlist = async () => {
-    setLoading(true);
-    const { poster_path, title, overview, id } = movie;
-    try {
-      const add = await fetch("/api/addlistitem", {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: userId,
-          poster_path,
-          title,
-          overview,
-          id,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const resp = await add.json();
-      setResp(add);
-      if (resp === 1) {
-        updateWatchlist();
-        setLoading(false);
-      }
-    } catch {}
-  };
 
   return (
     <Box p={"22px 8px"}>
@@ -101,10 +66,10 @@ export default function MovieCard({ movie }) {
             </Box>
           </Link>
           {isSignedIn &&
-            (!inWatchlist() ? (
+            (!inWatchlist ? (
               <LoadingButton
                 color="third"
-                onClick={() => addToWatchlist()}
+                onClick={() => add()}
                 loading={loading}
                 loadingPosition="center"
                 startIcon={<AddIcon />}
@@ -117,10 +82,10 @@ export default function MovieCard({ movie }) {
             ) : (
               <LoadingButton
                 color="third"
-                onClick={() => dropFromWatchlist()}
+                onClick={() => remove()}
                 loading={loading}
                 loadingPosition="center"
-                startIcon={<AddIcon />}
+                startIcon={<RemoveIcon />}
                 loadingIndicator={<CircularProgress color="third" size={20} />}
                 variant="outlined"
                 sx={{ width: "100%", zIndex: 9000 }}

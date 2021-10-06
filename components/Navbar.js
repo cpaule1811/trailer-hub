@@ -12,7 +12,7 @@ import {
 import { Box } from "@mui/system";
 import logo from "../img/logo.svg";
 import Image from "next/image";
-import { useUser, useUpdateUser } from "./UserContext";
+import { useUser, useUpdateUser } from "../hooks/UserContext";
 
 const hidden = {
   display: "none",
@@ -114,6 +114,7 @@ export default function NavBar() {
             }}
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            disableScrollLock
           >
             <Link href="/whats_new" passHref>
               <MenuItem component="a" sx={hidden}>
@@ -128,10 +129,14 @@ export default function NavBar() {
             </Link>
             {isSignedIn ? (
               <>
+              <Link href="/profile" passHref>
                 <MenuItem component="a">Profile</MenuItem>
+                </Link>
+                <Link href="/list" passHref>
                 <MenuItem component="a" divider>
                   My List
                 </MenuItem>
+                </Link>
                 <MenuItem
                   onClick={() =>
                     updateUser({ isSignedIn: false, userId: null, watchlist: [] })

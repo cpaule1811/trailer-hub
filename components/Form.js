@@ -10,7 +10,7 @@ export default function Form({ signin, handleForm }) {
   const href = signin ? "register" : "signin"
 
   return (
-    <Box display="flex" justifyContent="center" pt={10} pb={10}>
+    <Box display="flex" justifyContent="center" alignItems="center" height={700}>
       <Card
         variant="form"
         component="form"
@@ -30,7 +30,7 @@ export default function Form({ signin, handleForm }) {
             value={emailField}
             onChange={(e) => setEmailField(e.target.value)}
             color="secondary"
-            placeholder="username"
+            placeholder="email"
             autoFocus
           />
           <TextField

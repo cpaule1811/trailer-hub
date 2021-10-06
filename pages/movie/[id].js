@@ -4,7 +4,7 @@ import MovieInfo from "../../components/MovieInfo";
 import Head from "next/head";
 import { useState } from "react";
 import { Box } from "@mui/system";
-import { Container } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 
 export default function Movie({ movie }) {
   const [videoIndex, setVideoIndex] = useState(0);
@@ -29,8 +29,8 @@ export default function Movie({ movie }) {
           },
         }}
       >
-        <MovieInfo {...movie} />
-        <Box width="100%">
+        <MovieInfo movie={movie} />
+        <Box width="100%" bgcolor="#f2f2f2">
           <Container maxWidth={false} sx={{ bgcolor: "#111111" }}>
             {nextMovies.length ? (
               <ReactPlayer
@@ -57,6 +57,8 @@ export default function Movie({ movie }) {
               </div>
             )}
           </Container>
+          <Box p={1}>
+          <Typography color="primary" sx={{ justifySelf:"start" }}>More Trailers</Typography><Divider/></Box>
           <Box
             display="flex"
             flexWrap="wrap"
@@ -64,6 +66,8 @@ export default function Movie({ movie }) {
             gap={1}
             p={1}
           >
+            
+            
             {nextMovies.map((trailer, i) => {
               if (i !== videoIndex)
                 return (
@@ -78,7 +82,9 @@ export default function Movie({ movie }) {
             })}
           </Box>
         </Box>
+        
       </Box>
+     
     </>
   );
 }

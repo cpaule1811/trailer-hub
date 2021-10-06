@@ -11,9 +11,6 @@ const theme = createTheme({
     third: {
       main: "#EFEFEF",
     },
-    third: {
-      main: "#EFEFEF",
-    },
     neutral: {
       main: "#fff",
     },
@@ -53,7 +50,7 @@ const theme = createTheme({
     MuiTypography: {
       variants: [
         {
-          props: { variant: "link", component: "a" },
+          props: { variant: "link" },
           defaultProps: { component: "a" },
         },
       ],
@@ -64,6 +61,7 @@ const theme = createTheme({
           overflow: "hidden",
           padding: "10px 15px",
           minHeight: "84px",
+          boxSizing: 'border-box',
         },
       },
     },
@@ -153,11 +151,16 @@ const theme = createTheme({
             justifyContent: "space-around",
             background: "#3AB09E",
             height: 250,
-            width: "100%",
-            position: "absolute",
-            bototm: "0",
-            paddingTop: 40,
+            width: "100%",           
             gap: 10,
+            alignItems: "center",
+            "@media (max-width: 600px)": {
+                flexDirection: "column",
+                height: "100%",
+                textAlign: "center",
+                paddingBottom: 40,
+                
+            }
           },
         },
       ],

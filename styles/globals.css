@@ -1,189 +1,28 @@
-@font-face {
-  font-family: "AnsleyBold";
-  src: url("./fonts/Ansley Display-Bold.ttf");
-  font-display: swap;
+.touch-scroll {
+  overflow-x: hidden;
 }
 
-@font-face {
-  font-family: "mexcellent";
-  src: url("./fonts/mexcellent.regular.otf");
-  font-display: swap;
+body { 
+  overflow-x: hidden;
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
 
-.touch-scroll { 
-  overflow-x: hidden
-}
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.mexcellent {
-  font-family: mexcellent;
-}
-
-input,
-button {
-  border: none;
-  outline: none;
-}
-
-.front {
-  z-index: 500;
-}
-
-.middle {
-  z-index: 200;
-}
-
-.back {
-  z-index: -100;
-}
-
-.background {
-  height: 100vh;
-  width: 100%;
-  background-color: #007ea7;
-  background-image: linear-gradient(315deg, #51afa8 1%, #3aafa9 95%);
-}
-
-.signin-background {
-  background-image: linear-gradient(315deg, #2c464f 10%, #243135 95%);
-  width: 290px;
-  height: 450px;
-}
-
-.signin-container {
-  height: 80vh;
-}
-
-.nav-background {
-  background-color: #17252a;
-}
-
-h2 {
-  font-family: AnsleyBold;
-  color: white;
-}
-
-.Dark-Blue {
-  color: #17252a;
-}
-
-.dt-background {
-  background-color: #2b7a78;
-}
-
-.Turquoise {
-  color: #3aafa9;
-}
-
-.Darker-Turquoise {
-  color: #2b7a78;
-}
-
-.bg-darker-turquoise {
-  background-color: #aaa0a0;
-}
-
-.font-color {
-  color: #def2f1;
-}
-
-.card-dimensions {
-  min-width: 250px;
-  height: 375px;
-}
-
-
-.gap {
-  gap: 20px 2px;
-}
-
-.bg-custom-black {
-  background-color: #2e2d2d;
-  opacity: 0.3;
-}
-
-.youtube-button-pos {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.select-gap {
-  gap: 5px;
-}
-
-.grow-light:hover {
-  transform: scale(1.02);
-  transition: ease-in-out 500ms;
-}
-
-.overlay-tag {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.pt5-5 {
-  padding-top: 45%;
-}
-
-.overlay-tag-selected {
-  background-color: rgba(0, 0, 0, 0.174);
-}
-
-.bg-button:hover {
-  background-color: #17252a;
-  color: white;
-}
-
-.side-info-dimensions {
-  width: 320px;
-  height: 100%;
-}
-
-.movie-pm {
-  margin-left: 320px;
-}
-
-.bt--dashed {
-  border-top: 1px dashed rgba(121, 233, 214, 0.222);
-}
-
-.mh-trailer-card {
-  min-height: 200px;
-}
-
-.absolute-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.copy {
-  width: 300px;
-  background-color: #17252a;
-  height: 180px;
-}
-
-.mt4-5 {
-  margin-top: 44px;
-}
-
-.child { 
+.child {
   display: none;
 }
+
+@media (hover: none) {
+  .touch-scroll {
+    overflow-x: scroll
+  }
+  .touch-hide { 
+      display: none;
+  }
+}
+

@@ -27,8 +27,9 @@ export default function TrailerCard({ name, ytKey, setVideoIndex, index }) {
         width="100%"
         bgcolor="rgba(0,0,0,0.6)"
         className="child"
+        p="2px 5px"
       >
-        <Typography variant="caption" color="white" sx={{ m: "5px" }}>
+        <Typography variant="caption" color="white" >
           {name}
         </Typography>
         <Box

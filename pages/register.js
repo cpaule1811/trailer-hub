@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useUpdateUser } from "../components/UserContext";
+import { useUpdateUser } from "../hooks/UserContext";
 import Head from "next/head";
 import Form from "../components/Form";
 

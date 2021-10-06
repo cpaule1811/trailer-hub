@@ -9,7 +9,11 @@ import tmdbLogo from "../img/tmdb.svg";
 export default function Footer() {
   return (
     <Container maxWidth={false} variant="footer" disableGutters>
-      <Box>
+      <Box alignSelf="start" mt={6} sx={{
+        "@media (max-width:600px)": {
+          alignSelf:"center"
+        }
+      }}>
         <Link href="https://github.com/cpaule1811/trailer-hub" passHref>
           <Typography variant="link2" component="a" target="_blank">
             Source Code
@@ -22,8 +26,8 @@ export default function Footer() {
           </Typography>
         </Link>
       </Box>
-      <Box>
-        <Typography align="center" color="primary" sx={{ pt: 5, pb: 3 }}>
+      <Box >
+        <Typography align="center" color="primary" >
           Developed by Charlie Edwards
         </Typography>
         <Box display="flex" justifyContent="center" gap="1px" height="50px">
