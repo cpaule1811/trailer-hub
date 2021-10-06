@@ -27,4 +27,5 @@ export async function getServerSideProps() {
       latestReleases: latest.results,
     },
   };
+  
 }
