@@ -74,7 +74,7 @@ export default function NavBar() {
               </Link>
             </Box>
             <IconButton onClick={handleClick} size="small">
-                <Avatar sx={{ width: 45, height: 45, bgcolor: isSignedIn ? "#3AB09E" : "rgba(0, 0, 0, 0.54)" }} />
+                <Avatar sx={{ width: 45, height: 45, bgcolor: isSignedIn ? "#3AB09E" : "rgb(160,160,160)" }} />
             </IconButton>
           </Box>
           <Menu

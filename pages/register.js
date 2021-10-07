@@ -24,7 +24,7 @@ export default function Register({ setLoadComplete }) {
       });
       const user = await resp.json();
       if (user.user_id) {
-        updateUser({ userId: user.user_id, isSignedIn: true });
+        updateUser({ userId: user.user_id, isSignedIn: true, watchlist: [] });
         return router.push("/select");
       }
       setError(user.message);
