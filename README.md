@@ -9,6 +9,8 @@ A web application containing trailers and movie information.
 Key Features:
 * Can create watchlist for trailers.
 * Recommends trailers based off genres selected at registration. 
+* Postgres database to store user information
+* Bcrypt hashing to securely store passwords.
 
 ### Built With
 
