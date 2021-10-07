@@ -2,6 +2,7 @@
 <h1 >Trailer Stack</h1>
 
 ## About The Project
+![TrailerHubImg](https://user-images.githubusercontent.com/80873472/136307344-bb3d1fb3-0f07-45f2-be28-c7e2e556d6e9.PNG)
 
 A web application containing trailers and movie information.
 
