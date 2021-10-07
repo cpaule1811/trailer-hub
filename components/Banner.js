@@ -3,10 +3,11 @@ import { Box } from "@mui/system";
 import bannerImage from "../img/front_banner.jpg";
 import SearchBar from "./SearchBar";
 import { Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function Banner() {
   return (
-    <Box height={550} position="relative" >
+    <Box height={550} position="relative">
       <Box position="relative" height="100%" minHeight={400} width="auto">
         <Image src={bannerImage} alt="" layout="fill" objectFit="cover" />
       </Box>
@@ -15,7 +16,7 @@ export default function Banner() {
         top={0}
         height={550}
         width={"100%"}
-        bgcolor="rgba(0,0,0,0.7)"
+        bgcolor="rgba(0,0,0,0.65)"
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -29,12 +30,34 @@ export default function Banner() {
           pl={2}
           pr={2}
         >
-          <Typography gutterBottom variant="h4" color="white">
-            Find all your favourite film trailers!
-          </Typography><Typography gutterBottom variant="h4" color="white">
-            All in One place
+          <Typography
+            gutterBottom
+            variant="h4"
+            color="white"
+            align="center"
+            sx={{ mb: 3 }}
+          >
+            One place for all your favourite film trailers!
           </Typography>
           <SearchBar />
+          <Box
+            width="100%"
+            display="flex"
+            justifyContent="center"
+            mt={2}
+            gap={1}
+          >
+            <Link href="/signin" passHref>
+              <Typography variant="link" component="a">
+                Signin
+              </Typography>
+            </Link>
+            <Link href="/register" passHref>
+              <Typography variant="link" component="a">
+                Register
+              </Typography>
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Box>

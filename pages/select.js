@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { genres } from "../data/genreData"
+import { genres } from "../data/genreData";
 import { Divider, Typography, Container, Button, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 import { useUser } from "../hooks/UserContext";
@@ -69,7 +69,7 @@ export default function TagSelect() {
 
   return (
     <Container maxWidth="md" sx={{ pt: 4 }}>
-      <Typography variant="h4" align="center"  gutterBottom>
+      <Typography variant="h4" align="center" gutterBottom>
         Please select your 3 favourite genres
       </Typography>
       <Typography variant="h5" align="center" gutterBottom>
@@ -92,20 +92,31 @@ export default function TagSelect() {
                 borderRadius: "5px",
                 "&:hover": {
                   transform: "scale(1.02)",
-                  transition: "1s"
-                }
+                  transition: "1s",
+                },
               }}
             >
               <Box
-              height="100%"
-              width="100%"
-              display="flex"
-              bgcolor= {isSelected(item.genre) ? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.174)" }
-              alignItems="center"
-              justifyContent="center"
-              borderRadius="5px"
+                height="100%"
+                width="100%"
+                display="flex"
+                bgcolor={
+                  isSelected(item.genre)
+                    ? "rgba(0, 0, 0, 0.8)"
+                    : "rgba(0, 0, 0, 0.174)"
+                }
+                alignItems="center"
+                justifyContent="center"
+                borderRadius="5px"
               >
-                <Typography variant="h6" align="center" color="white" className="tvc">{item.genre}</Typography>
+                <Typography
+                  variant="h6"
+                  align="center"
+                  color="white"
+                  className="tvc"
+                >
+                  {item.genre}
+                </Typography>
               </Box>
             </Paper>
           );
@@ -127,4 +138,3 @@ export default function TagSelect() {
     </Container>
   );
 }
-

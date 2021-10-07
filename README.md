@@ -2,10 +2,8 @@
 <h1 >Trailer Stack</h1>
 
 ## About The Project
-![edh-builder-screenshot](https://user-images.githubusercontent.com/80873472/136190019-422904e9-34a5-402b-a8d9-9d972681ae44.PNG)
 
-
-A deckbuilding website for the Magic the Gathering trading card game. 
+A web application containing trailers and movie information.
 
 Key Features:
 * Can create watchlist for trailers.
